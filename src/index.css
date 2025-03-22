@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black text-gray-100;
+    cursor: none; /* Hide default cursor */
+  }
+
+  /* Custom cursor styles */
+  .custom-cursor {
+    @apply fixed w-6 h-6 rounded-full pointer-events-none z-50
+           bg-red-500/30 mix-blend-screen transition-transform duration-100;
+    transform: translate(-50%, -50%);
+  }
+
+  .custom-cursor-dot {
+    @apply fixed w-2 h-2 rounded-full pointer-events-none z-50
+           bg-red-500 mix-blend-screen transition-transform duration-75;
+    transform: translate(-50%, -50%);
+  }
+
+  .custom-cursor-trail {
+    @apply fixed w-4 h-4 rounded-full pointer-events-none
+           bg-red-500/20 mix-blend-screen transition-all duration-500;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Hover states for interactive elements */
+  a:hover ~ .custom-cursor,
+  button:hover ~ .custom-cursor {
+    @apply scale-150 bg-red-500/50;
+  }
+}
+
+@layer components {
+  .glow {
+    box-shadow: 0 0 20px theme('colors.red.500/0.5');
+  }
+  
+  .btn {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 
+           hover:scale-105 hover:glow flex items-center gap-2;
+  }
+  
+  .btn-primary {
+    @apply bg-red-600 text-white hover:bg-red-700;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-red-600 text-red-500 hover:bg-red-600/10;
+  }
+
+  .card {
+    @apply bg-gray-900/50 p-6 rounded-xl backdrop-blur-sm
+           border border-gray-800 hover:border-red-500/50
+           transition-all duration-300 hover:glow;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r 
+           from-white to-gray-400 bg-clip-text text-transparent;
+  }
+
+  .nav-link {
+    @apply text-gray-400 hover:text-white transition-colors duration-200;
+  }
+
+  .logo {
+    @apply transition-all duration-300;
+  }
+
+  .logo:hover {
+    filter: drop-shadow(0 0 10px theme('colors.red.500'));
+  }
+
+  .timeline-step {
+    @apply flex items-center gap-4 text-lg text-gray-300;
+  }
+
+  .timeline-icon {
+    @apply p-3 rounded-lg bg-red-500/10 border border-red-500/20;
+  }
+}
+
+/* Animated background */
+.animated-bg {
+  background: linear-gradient(45deg, #000 0%, #1a1a1a 100%);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
